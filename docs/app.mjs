@@ -13,6 +13,7 @@ document.body.appendChild(btnOpen);
 function getFile() {
   return new Promise((resolve) => {
     const inpFile = document.createElement("input");
+    inpFile.type = "file";
     inpFile.style.display = "none";
     document.body.appendChild(inpFile);
     inpFile.addEventListener("change", () => {
