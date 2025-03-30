@@ -23,7 +23,7 @@ function getFile() {
   });
 }
 
-function parseFile() {
+async function parseFile() {
   const file = await getFile();
   console.log(file.json());
 }
