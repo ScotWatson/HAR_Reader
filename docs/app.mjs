@@ -26,5 +26,5 @@ function getFile() {
 
 async function parseFile() {
   const file = await getFile();
-  console.log(file.json());
+  console.log(JSON.parse(file.text()));
 }
