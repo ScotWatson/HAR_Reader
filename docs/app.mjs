@@ -26,5 +26,63 @@ function getFile() {
 
 async function parseFile() {
   const file = await getFile();
-  console.log(JSON.parse(await file.text()));
+  const harObj = JSON.parse(await file.text());
+  console.log(harObj);
+  if (!(typeof harObj === "object" && harObj !== null)) {
+    throw new Error("Invalid format");
+  }
+  if (!(typeof harObj.log === "object" && harObj.log !== null)) {
+    throw new Error("Invalid format");
+  }
+  if (!(harObj.log.creator === "WebInspector")) {
+    throw new Error("Invalid format");
+  }
+  if (!(typeof harObj.log.entries === "object" && typeof harObj.log.entries[Symbol.iterator] === "function")) {
+    throw new Error("Invalid format");
+  }
+  if (!(typeof harObj.log.pages === "object" && typeof harObj.log.entries[Symbol.iterator] === "function")) {
+    throw new Error("Invalid format");
+  }
+  for (const entry of harObj.log.entries) {
+    entry
+isIterator(entry.cache)
+typeof entry.connection === "string"
+    const port = parseInt(entry.connection);
+typeof entry.pageref === "string"
+entry.request: {
+  method: 'GET',
+  url: 'https://scotwatson.github.io/WorkerTest/index.html',
+  httpVersion: 'http/2.0',
+  headers: Array(19),
+  queryString: Array(0),
+}
+entry.response: {
+  status: 200,
+  statusText: '',
+  httpVersion: 'http/2.0',
+  headers: Array(23),
+  cookies: Array(0),
+}
+entry.serverIPAddress: "185.199.110.153"
+typeof entry.startedDateTime === "string"
+    new Date(entry.startedDateTime);
+typeof entry.time === "number"
+entry.timings: {
+  blocked: 10.318000000320374,
+  dns: -1,
+  ssl: -1,
+  connect: -1,
+  send: 0.4690000000000012,
+}
+entry._connectionId: "373875"
+entry._initiator: {type: 'other'}
+entry._priority: "VeryHigh"
+entry._resourceType: "document"
+}
+}
+function isObject(arg) {
+  return (typeof arg === "object" && arg !== null);
+}
+function isIterable(arg) {
+  return isObject(arg) && typeof arg[Symbol.iterator] === "function");
 }
